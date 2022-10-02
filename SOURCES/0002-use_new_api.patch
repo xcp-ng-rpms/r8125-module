@@ -1,3 +1,7 @@
+
+### Allow use of RTL_USE_NEW_INTR_API that allows support for more
+### modern MSI/MSIX IRQ kernel support
+
 --- a/src/r8125.h	2022-03-31 07:27:49.000000000 +0000
 +++ b/src/r8125.h	2022-05-06 02:36:55.000000000 +0000
 @@ -51,11 +51,9 @@

@@ -1,3 +1,7 @@
+
+### enable SG and TSO options by default for better performance
+### network is slow with out them
+
 --- a/src/r8125_n.c	2022-06-28 15:32:07.000000000 +0000
 +++ b/src/r8125_n.c	2022-07-31 19:25:19.317518176 +0000
 @@ -12703,6 +12703,7 @@
