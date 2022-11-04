@@ -8,12 +8,15 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{driver_name}-module
-Version: 9.003.05
-Release: 2%{?dist}
+Version: 9.010.01
+Release: 1%{?dist}
 License: GPL
 
 #Source taken from https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
 Source0: %{driver_name}-%{version}.tar.gz
+
+Patch0: 0001-config_change.patch
+Patch1: 0002-use_new_api.patch
 
 BuildRequires: gcc
 BuildRequires: kernel-devel
@@ -53,6 +56,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 /lib/modules/%{kernel_version}/*/*.ko
 
 %changelog
+* Fri Nov 04 2022 Andrew Lindh <andrew@netplex.net> - 9.010-01-1
+- Update driver to new version and options
+
 * Fri Sep 16 2022 Samuel Verschelde <stormi-xcp@ylix.fr> - 9.003-05-2
 - Rebuild for XCP-ng 8.3
 
