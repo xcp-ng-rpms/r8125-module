@@ -8,7 +8,7 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{driver_name}-module
-Version: 9.010.01
+Version: 9.012.03
 Release: 1%{?dist}
 License: GPL
 
@@ -56,6 +56,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 /lib/modules/%{kernel_version}/*/*.ko
 
 %changelog
+* Wed Nov 01 2023 Andrew Lindh <andrew@netplex.net> - 9.012.03-1
+- Update driver to new vendor version
+
 * Fri Nov 04 2022 Andrew Lindh <andrew@netplex.net> - 9.010.01-1
 - Update driver to new version and options
 
