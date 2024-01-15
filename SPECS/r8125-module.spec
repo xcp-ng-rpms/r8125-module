@@ -8,7 +8,7 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{driver_name}-module
-Version: 9.012.03
+Version: 9.012.04
 Release: 1%{?dist}
 License: GPL
 
@@ -56,6 +56,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 /lib/modules/%{kernel_version}/*/*.ko
 
 %changelog
+* Wed Jan 10 2024 Andrew Lindh <andrew@netplex.net> - 9.012.04-1
+- Update driver to new vendor version, minor HW version fix for irq_nvecs
+
 * Wed Nov 01 2023 Andrew Lindh <andrew@netplex.net> - 9.012.03-1
 - Update driver to new vendor version
 
