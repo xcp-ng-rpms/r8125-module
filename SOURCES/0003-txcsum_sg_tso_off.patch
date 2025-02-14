@@ -1,0 +1,42 @@
+###
+### Disable TX Checksum and TSO by default due to problem
+### with Windows Server VMs
+###
+--- a/src/r8125_n.c	2024-02-01 02:24:36.095565118 +0000
++++ b/src/r8125_n.c	2024-02-01 02:28:23.183256238 +0000
+@@ -17339,8 +17339,9 @@
+          * enable them. Use at own risk!
+          */
+         tp->cp_cmd |= RTL_R16(tp, CPlusCmd);
++	dev->features &= ~(NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM | NETIF_F_SG);
++	dev->features &= ~NETIF_F_ALL_TSO;
+         if (tp->mcfg != CFG_METHOD_DEFAULT) {
+-                dev->features |= NETIF_F_IP_CSUM;
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3,0,0)
+                 tp->cp_cmd |= RxChkSum;
+ #else
+@@ -17352,7 +17353,7 @@
+                         /* nothing to do */
+                         break;
+                 default:
+-                        dev->features |= NETIF_F_SG | NETIF_F_TSO;
++                        /* do not enable SG and TSO */
+                         break;
+                 };
+                 dev->hw_features = NETIF_F_SG | NETIF_F_IP_CSUM | NETIF_F_TSO |
+@@ -17366,7 +17367,6 @@
+                 dev->hw_features |= NETIF_F_RXFCS;
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,22)
+                 dev->hw_features |= NETIF_F_IPV6_CSUM | NETIF_F_TSO6;
+-                dev->features |= NETIF_F_IPV6_CSUM;
+                 switch (tp->mcfg) {
+                 case CFG_METHOD_2:
+                 case CFG_METHOD_3:
+@@ -17374,7 +17374,6 @@
+                         /* nothing to do */
+                         break;
+                 default:
+-                        dev->features |= NETIF_F_TSO6;
+                         break;
+                 };
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(5,19,0)
