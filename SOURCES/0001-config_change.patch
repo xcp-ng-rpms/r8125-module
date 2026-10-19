@@ -1,14 +1,25 @@
+From 6e2cefbf1c80a5d20655852e8ede17f71bda9e4e Mon Sep 17 00:00:00 2001
+From: Quentin Casasnovas <quentin.casasnovas@vates.tech>
+Date: Mon, 19 Oct 2026 14:27:15 +0200
+Subject: [PATCH] Config changes.
 
-### Enable TX Queue support for better performance
-### Enable PTP (Precision Time Protocol) support (if enabled in kernel)
-### Enable RSS option for better performance
-### Enable automatic firmware loading, if optional firmware is available
-### Enable WOL magic packet by default
-### Disable EEE to improve compatibility
+Enable TX Queue support for better performance
+Enable PTP (Precision Time Protocol) support (if enabled in kernel)
+Enable RSS option for better performance
+Enable automatic firmware loading, if optional firmware is available
+Enable WOL magic packet by default
+Disable EEE to improve compatibility
 
---- a/src/Makefile	2023-11-01 17:53:04.552574114 +0000
-+++ b/src/Makefile	2023-11-01 17:54:05.475797052 +0000
-@@ -38,15 +38,15 @@
+Signed-off-by: Quentin Casasnovas <quentin.casasnovas@vates.tech>
+---
+ src/Makefile | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 9441926ad655..6d1e6083b145 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -38,14 +38,14 @@ CONFIG_DOWN_SPEED_100 = n
  CONFIG_ASPM = y
  ENABLE_S5WOL = y
  ENABLE_S5_KEEP_CURR_MAC = n
@@ -19,11 +30,9 @@
  ENABLE_TX_NO_CLOSE = y
 -ENABLE_MULTIPLE_TX_QUEUE = n
 -ENABLE_PTP_SUPPORT = n
--ENABLE_PTP_MASTER_MODE = n
 -ENABLE_RSS_SUPPORT = n
 +ENABLE_MULTIPLE_TX_QUEUE = y
 +ENABLE_PTP_SUPPORT = y
-+ENABLE_PTP_MASTER_MODE = y
 +ENABLE_RSS_SUPPORT = y
  ENABLE_LIB_SUPPORT = n
 -ENABLE_USE_FIRMWARE_FILE = n

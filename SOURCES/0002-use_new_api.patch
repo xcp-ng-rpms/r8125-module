@@ -1,11 +1,22 @@
+From 3adc427ec3edbe8d2d1661645132c7e303a55cff Mon Sep 17 00:00:00 2001
+From: Quentin Casasnovas <quentin.casasnovas@vates.tech>
+Date: Mon, 19 Oct 2026 14:25:39 +0200
+Subject: [PATCH] Use RTL_USE_NEW_INTR_API.
 
-### Allow use of RTL_USE_NEW_INTR_API that allows support for more
-### modern MSI/MSIX IRQ kernel support
+Allow use of RTL_USE_NEW_INTR_API that allows support for more modern
+MSI/MSIX IRQ kernel support
 
---- a/src/r8125.h	2022-03-31 07:27:49.000000000 +0000
-+++ b/src/r8125.h	2022-05-06 02:36:55.000000000 +0000
-@@ -51,11 +51,9 @@
- typedef int netdev_tx_t;
+Signed-off-by: Quentin Casasnovas <quentin.casasnovas@vates.tech>
+---
+ src/r8125.h | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/r8125.h b/src/r8125.h
+index 986a1a5e1df3..1156ee1f3eeb 100644
+--- a/src/r8125.h
++++ b/src/r8125.h
+@@ -222,11 +222,9 @@ static inline bool dev_page_is_reusable(struct page *page)
+ }
  #endif
  
 -/*
@@ -14,5 +25,5 @@
  #endif
 -*/
  
- #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,22)
- #define skb_transport_offset(skb) (skb->h.raw - skb->data)
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(4,10,0)
+ #define dma_map_page_attrs(dev, page, offset, size, dir, attrs) \

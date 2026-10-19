@@ -8,12 +8,12 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{driver_name}-module
-Version: 9.012.04
-Release: 2%{?dist}
+Version: 9.018.00
+Release: 1%{?dist}
 License: GPL
 
-#Source taken from https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
-Source0: %{driver_name}-%{version}.tar.gz
+# Origin: https://www.realtek.com/Download/List?cate_id=584
+Source0: %{driver_name}-%{version}.tar.bz2
 
 Patch0: 0001-config_change.patch
 Patch1: 0002-use_new_api.patch
@@ -57,6 +57,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 /lib/modules/%{kernel_version}/*/*.ko
 
 %changelog
+* Mon Oct 19 2026 Quentin Casasnovas <quentin.casasnovas@vates.tech> - 9.018.00-1
+- Update driver to new vendor version
+
 * Wed Jan 31 2024 Andrew Lindh <andrew@netplex.net> - 9.012.04-2
 - Disable driver txchecksum/sg/tso by default to workaround bugs
 
