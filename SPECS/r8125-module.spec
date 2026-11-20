@@ -9,7 +9,7 @@
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{driver_name}-module
 Version: 9.012.04
-Release: 2.0.kernelpreview.1%{?dist}
+Release: 2.0.kernelpreview.1.0.testv0.1%{?dist}
 License: GPL
 
 #Source taken from https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
